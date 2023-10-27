@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:test_project/pages/post_detail_page.dart';
+import 'package:test_project/pages/post_list_page.dart';
 
 import 'login_page.dart';
 
@@ -23,7 +25,31 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       pageBuilder: (context, state) => CustomTransitionPage<void>(
         transitionDuration: const Duration(seconds: 2),
         key: state.pageKey,
-        child: LoginPage(),
+        child: const LoginPage(),
+        transitionsBuilder: slideTransition,
+      ),
+    ),
+
+    /// post list
+    GoRoute(
+      path: RouterPath.postList.path,
+      name: RouterPath.postList.name,
+      pageBuilder: (context, state) => CustomTransitionPage<void>(
+        transitionDuration: const Duration(seconds: 2),
+        key: state.pageKey,
+        child: const PostListPage(),
+        transitionsBuilder: slideTransition,
+      ),
+    ),
+
+    /// post detail
+    GoRoute(
+      path: RouterPath.postDetail.path,
+      name: RouterPath.postDetail.name,
+      pageBuilder: (context, state) => CustomTransitionPage<void>(
+        transitionDuration: const Duration(seconds: 2),
+        key: state.pageKey,
+        child: PostDetailPage(postId: int.parse(state.params['id'] ?? '1')),
         transitionsBuilder: slideTransition,
       ),
     ),

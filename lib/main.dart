@@ -16,17 +16,6 @@ class MainApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final goRoute = ref.watch(goRouterProvider);
-
-    final dio = Dio(); // Provide a dio instance
-    dio.options.headers['Demo-Header'] =
-        'demo header'; // config your dio headers globally
-    final client = UserRepository(dio);
-
-    client
-        .getUser(email: 'Sincere@april.biz')
-        .then((it) => it?.forEach((element) {
-              print(element.email);
-            }));
     return MaterialApp.router(
       routerConfig: goRoute,
       debugShowCheckedModeBanner: false,
