@@ -38,7 +38,7 @@ class AuthNotifier extends StateNotifier<AuthContext> {
     final storage = await SharedPreferences.getInstance();
     if (storage.containsKey('auth')) {
       final email = storage.getString('auth');
-      signIn(email: email ?? '');
+      await signIn(email: email ?? '');
     }
   }
 }

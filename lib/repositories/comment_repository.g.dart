@@ -41,7 +41,7 @@ class _CommentRepository implements CommentRepository {
   String? baseUrl;
 
   @override
-  Future<List<Comment>?> getPosts({
+  Future<List<Comment>?> getComments({
     int? id,
     int? postId,
   }) async {

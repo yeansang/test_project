@@ -14,23 +14,20 @@ class LoginPage extends ConsumerStatefulWidget {
 
 class _LoginPageState extends ConsumerState<LoginPage> {
   final emailTextController = TextEditingController();
-  @override
-  void initState() {
-    final authContext = ref.read(authProvider);
-    final goRoute = ref.read(goRouterProvider);
-    if (authContext.currentUser != null) {
-      goRoute.goNamed(
-        RouterPath.postList.name,
-      );
-    }
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     final authNotifier = ref.read(authProvider.notifier);
-    // final authContext = ref.watch(authProvider);
     final goRoute = ref.read(goRouterProvider);
+
+    ref.listen(authProvider, (prev, next) {
+      if (next.currentUser != null || prev?.currentUser != null) {
+        goRoute.goNamed(
+          RouterPath.postList.name,
+        );
+      }
+    });
+
     ToastContext().init(context);
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),

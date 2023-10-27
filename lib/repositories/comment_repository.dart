@@ -29,6 +29,6 @@ abstract class CommentRepository {
   factory CommentRepository(Dio dio, {String baseUrl}) = _CommentRepository;
 
   @GET('/')
-  Future<List<Comment>?> getPosts(
+  Future<List<Comment>?> getComments(
       {@Query('id') int? id, @Query('postId') int? postId});
 }
