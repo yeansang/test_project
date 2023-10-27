@@ -23,7 +23,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       path: RouterPath.login.path,
       name: RouterPath.login.name,
       pageBuilder: (context, state) => CustomTransitionPage<void>(
-        transitionDuration: const Duration(seconds: 2),
+        transitionDuration: const Duration(milliseconds: 500),
         key: state.pageKey,
         child: const LoginPage(),
         transitionsBuilder: slideTransition,
@@ -35,7 +35,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       path: RouterPath.postList.path,
       name: RouterPath.postList.name,
       pageBuilder: (context, state) => CustomTransitionPage<void>(
-        transitionDuration: const Duration(seconds: 2),
+        transitionDuration: const Duration(milliseconds: 500),
         key: state.pageKey,
         child: const PostListPage(),
         transitionsBuilder: slideTransition,
@@ -47,7 +47,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       path: RouterPath.postDetail.path,
       name: RouterPath.postDetail.name,
       pageBuilder: (context, state) => CustomTransitionPage<void>(
-        transitionDuration: const Duration(seconds: 2),
+        transitionDuration: const Duration(milliseconds: 500),
         key: state.pageKey,
         child: PostDetailPage(postId: int.parse(state.params['id'] ?? '1')),
         transitionsBuilder: slideTransition,

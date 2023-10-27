@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_project/providers/comment_provider.dart';
 import 'package:test_project/providers/post_provider.dart';
+import 'package:test_project/providers/user_provider.dart';
 import 'package:test_project/repositories/post_repository.dart';
 
 import 'router.dart';
@@ -16,9 +17,10 @@ class PostData {
 final postListProvider = FutureProvider<List<PostData>?>((ref) async {
   await ref.read(postProvider.notifier).getPostList();
   await ref.read(commentProvider.notifier).getComments();
+  ref.watch(userProvider.notifier);
 
-  final posts = ref.read(postProvider);
-  final comments = ref.read(commentProvider);
+  final posts = ref.watch(postProvider);
+  final comments = ref.watch(commentProvider);
 
   final List<PostData> out = [];
 
@@ -64,7 +66,8 @@ class PostListPage extends ConsumerWidget {
                                     overflow: TextOverflow.ellipsis,
                                   )),
                               Flexible(
-                                  child: Text('댓글수: ${data?.commentCount}'))
+                                  child:
+                                      Text('comments: ${data?.commentCount}'))
                             ],
                           ))),
                     ),

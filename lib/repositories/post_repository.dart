@@ -23,4 +23,7 @@ abstract class PostRepository {
 
   @GET('/')
   Future<List<Post>?> getPosts({@Query('id') int? id});
+
+  @DELETE('/{id}')
+  Future<void> deletePost({@Path('id') required int id});
 }

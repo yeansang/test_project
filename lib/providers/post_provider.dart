@@ -10,6 +10,11 @@ class PostNotifier extends StateNotifier<List<Post>> {
   Future<void> getPostList() async {
     state = await PostRepository(dio).getPosts() ?? [];
   }
+
+  Future<void> deletePost({required int postId}) async {
+    await PostRepository(dio).deletePost(id: postId);
+    await getPostList();
+  }
 }
 
 final postProvider = StateNotifierProvider<PostNotifier, List<Post>>((ref) {
