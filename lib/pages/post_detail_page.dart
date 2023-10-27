@@ -22,12 +22,14 @@ class _PostDetailPageState extends ConsumerState<PostDetailPage> {
     final goRoute = ref.read(goRouterProvider);
     final authContext = ref.read(authProvider);
     final postNotifier = ref.read(postProvider.notifier);
+
     final post = ref
         .read(postProvider)
         .firstWhere((element) => element.id == widget.postId);
 
     final comments = ref.read(commentProvider)[widget.postId] ?? [];
     final auther = ref.read(userProvider)[post.userId];
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(

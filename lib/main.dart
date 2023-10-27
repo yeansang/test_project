@@ -1,8 +1,6 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_project/pages/router.dart';
-import 'package:test_project/repositories/user_repository.dart';
 
 void main() {
   runApp(
